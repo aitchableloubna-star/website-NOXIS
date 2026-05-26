@@ -49,21 +49,31 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 30px;
+            position: relative; /* Context for absolute layout */
         }
 
         .logo-area {
-            height: 100%; 
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             align-items: center;
+            z-index: 1010;
         }
 
         .logo-area img {
-            height: 100%; /* Force logo to take 100% height of the thin rectangle */
-            max-height: 90px; /* Matches the exact thin header height */
-            width: auto;
+            /* ADJUST THESE TO MAKE IT EVEN BIGGER IF NEEDED */
+            height: 140px;  /* Pushes way past the 90px rectangle boundaries */
+            width: auto;    /* Keeps proportions perfect */
+            
             display: block;
             object-fit: contain;
-            padding: 0; /* Removed all padding so it looks as big as possible */
+            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1)); /* Makes it pop out cleanly over the slider */
+        }
+
+        nav {
+            margin-left: auto; /* Pushes the menu to the right side automatically */
         }
 
         nav ul {
@@ -92,7 +102,7 @@
             position: relative;
             width: 100%;
             height: 80vh;
-            margin-top: 90px; /* Balanced offset back to the thin header */
+            margin-top: 90px; 
             overflow: hidden;
             background-color: #000;
         }
@@ -116,7 +126,6 @@
             align-items: center;
         }
 
-        /* Dark overlay over hero images to make white text readable */
         .slide::before {
             content: '';
             position: absolute;
@@ -152,7 +161,7 @@
             text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
-        /* Slider Controls (Arrows) */
+        /* Slider Controls */
         .arrow {
             position: absolute;
             top: 50%;
@@ -308,7 +317,7 @@
 
     <section id="valeurs">
         <h2>Nos Valeurs</h2>
-        <p>Intégrité, Excellence operational, Responsabilité et Esprit d'équipe orienté client.</p>
+        <p>Intégrité, Excellence opérationnelle, Responsabilité et Esprit d'équipe orienté client.</p>
     </section>
 
     <script>
