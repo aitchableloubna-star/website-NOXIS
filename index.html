@@ -13,6 +13,7 @@
             --dark-text: #111111;
             --light-bg: #FFFFFF;
             --gray-text: #555555;
+            --light-gray-bg: #F8F9FA;
         }
 
         * {
@@ -26,6 +27,7 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
         /* --- Header & Navigation Bar --- */
@@ -38,7 +40,7 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             z-index: 1000;
             border-bottom: 1px solid #f0f0f0;
-            height: 90px; /* Kept the original thin rectangle height */
+            height: 90px;
         }
 
         .nav-container {
@@ -49,7 +51,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 0 30px;
-            position: relative; /* Context for absolute layout */
+            position: relative;
         }
 
         .logo-area {
@@ -63,17 +65,15 @@
         }
 
         .logo-area img {
-            /* ADJUST THESE TO MAKE IT EVEN BIGGER IF NEEDED */
-            height: 140px;  /* Pushes way past the 90px rectangle boundaries */
-            width: auto;    /* Keeps proportions perfect */
-            
+            height: 140px;  
+            width: auto;    
             display: block;
             object-fit: contain;
-            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1)); /* Makes it pop out cleanly over the slider */
+            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
         }
 
         nav {
-            margin-left: auto; /* Pushes the menu to the right side automatically */
+            margin-left: auto;
         }
 
         nav ul {
@@ -213,37 +213,120 @@
             transform: scale(1.2);
         }
 
-        /* --- Sections Layout --- */
+        /* --- Sections Core Layout --- */
         section {
-            padding: 80px 20px;
-            max-width: 1200px;
+            padding: 100px 20px;
+            max-width: 1400px;
             margin: 0 auto;
             text-align: center;
         }
 
         section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             position: relative;
             display: inline-block;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         section h2::after {
             content: '';
             display: block;
-            width: 50%;
+            width: 60%;
             height: 4px;
             background: linear-gradient(90deg, var(--primary-red), var(--accent-yellow));
-            margin: 8px auto 0 auto;
+            margin: 10px auto 0 auto;
             border-radius: 2px;
         }
 
-        section p {
+        .section-subtitle {
             color: var(--gray-text);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+
+        /* --- Qui Sommes-nous Custom Interface Grid --- */
+        .about-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: stretch;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .about-card {
+            background: #ffffff;
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            padding: 40px 30px;
+            flex: 1;
+            min-width: 320px;
+            max-width: 420px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-top 0.3s ease;
+            text-align: left;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Subtle glowing top accent line that matches your logo spectrum */
+        .about-card:nth-child(1) { border-top: 4px solid var(--primary-red); }
+        .about-card:nth-child(2) { border-top: 4px solid var(--accent-orange); }
+        .about-card:nth-child(3) { border-top: 4px solid var(--accent-yellow); }
+
+        .about-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            background: var(--light-gray-bg);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .about-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark-text);
+            font-weight: 700;
+        }
+
+        .about-card p {
+            color: var(--gray-text);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* Stat numbers design highlight for the 3rd column */
+        .stat-highlight {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        /* --- Other Layout Placeholders --- */
+        .bg-alt {
+            background-color: var(--light-gray-bg);
+            max-width: 100%;
         }
     </style>
 </head>
@@ -305,19 +388,43 @@
 
     <section id="qui-sommes-nous">
         <h2>Qui Sommes-nous</h2>
-        <p>NOXIS accompagne la transformation moderne des entreprises grâce à des solutions technologiques sur mesure performantes et agiles.</p>
+        <p class="section-subtitle">Découvrez notre mission, nos expertises numériques et notre impact global.</p>
+        
+        <div class="about-grid">
+            <div class="about-card">
+                <div class="card-icon">🚀</div>
+                <h3>Innovation & Connexion</h3>
+                <p><strong>NOXIS (Casanet)</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques dans un monde chaque jour davantage connecté.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="card-icon">⚙️</div>
+                <h3>Solutions Sur Mesure</h3>
+                <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises auxquelles nous offrons une gamme complète de services allant de la mise en place de leur **infrastructure réseaux et IT** aux **services en ligne** et au **Cloud computing**.</p>
+            </div>
+
+            <div class="about-card">
+                <div class="card-icon">🌍</div>
+                <h3>Impact International</h3>
+                <div style="margin-top: 5px; margin-bottom: 15px;">
+                    <span class="stat-highlight">14 Pays</span>
+                    <span style="font-weight: 700; color: var(--dark-text);">3 000 Clients Fidèles</span>
+                </div>
+                <p>Fort de notre expansion et de notre savoir-faire, nous opérons aujourd’hui à l'échelle internationale dans 14 pays avec 3 000 clients majeurs qui nous font chaque jour confiance.</p>
+            </div>
+        </div>
     </section>
 
-    <section id="vision" style="background-color: #fafafa; max-width: 100%;">
+    <section id="vision" class="bg-alt">
         <div style="max-width: 1200px; margin: 0 auto;">
             <h2>Vision</h2>
-            <p>Se positionner comme le catalyseur incontournable de l'écosystème numérique intelligent de demain.</p>
+            <p style="color: var(--gray-text); font-size: 1.1rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Se positionner comme le catalyseur incontournable de l'écosystème numérique intelligent de demain.</p>
         </div>
     </section>
 
     <section id="valeurs">
         <h2>Nos Valeurs</h2>
-        <p>Intégrité, Excellence opérationnelle, Responsabilité et Esprit d'équipe orienté client.</p>
+        <p style="color: var(--gray-text); font-size: 1.1rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Intégrité, Excellence opérationnelle, Responsabilité et Esprit d'équipe orienté client.</p>
     </section>
 
     <script>
