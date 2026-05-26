@@ -251,7 +251,7 @@
             font-weight: 400;
         }
 
-        /* --- Qui Sommes-nous Custom Interface Grid --- */
+        /* --- Qui Sommes-nous Interactive Premium Layout --- */
         .about-grid {
             display: flex;
             gap: 30px;
@@ -264,39 +264,98 @@
         .about-card {
             background: #ffffff;
             border: 1px solid #eef0f3;
-            border-radius: 12px;
-            padding: 40px 30px;
+            border-radius: 14px;
+            padding: 45px 35px;
             flex: 1;
             min-width: 320px;
             max-width: 420px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-top 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
             text-align: left;
             position: relative;
             display: flex;
             flex-direction: column;
+            cursor: pointer;
+            
+            /* SMOOTH MOTION ANIMATION SETUP */
+            transition: transform 0.4s cubic-bezier(0.16. 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        border-color 0.3s ease;
         }
 
-        /* Subtle glowing top accent line that matches your logo spectrum */
+        /* Border highlights based on logo palette */
         .about-card:nth-child(1) { border-top: 4px solid var(--primary-red); }
         .about-card:nth-child(2) { border-top: 4px solid var(--accent-orange); }
         .about-card:nth-child(3) { border-top: 4px solid var(--accent-yellow); }
 
-        .about-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.07);
+        /* INTERACTIVE TRIGGER: Moves up dramatically on hover or mobile touch */
+        .about-card:hover, .about-card:active {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border-color: #d2d6dc;
         }
 
-        .card-icon {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-            background: var(--light-gray-bg);
-            width: 60px;
-            height: 60px;
+        /* Custom Vector-Style CSS UI Icons (No Emojis) */
+        .custom-icon-wrapper {
+            width: 65px;
+            height: 65px;
+            background-color: var(--light-gray-bg);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 25px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Icon shapes morph up dynamically when card expands */
+        .about-card:hover .custom-icon-wrapper {
+            background-color: #fff2f2;
+            transform: rotate(5deg);
+        }
+
+        /* Design Icon 1: Tech Rocket Arrow */
+        .icon-rocket {
+            width: 0; height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 24px solid var(--primary-red);
+            position: relative;
+        }
+        .icon-rocket::after {
+            content: ''; position: absolute;
+            top: 20px; left: -6px;
+            width: 12px; height: 6px;
+            background: var(--accent-orange);
+        }
+
+        /* Design Icon 2: Microchips/Network Node Grid */
+        .icon-network {
+            width: 20px; height: 20px;
+            border: 3px solid var(--accent-orange);
+            border-radius: 4px;
+            position: relative;
+        }
+        .icon-network::before, .icon-network::after {
+            content: ''; position: absolute; background: var(--accent-yellow);
+            width: 8px; height: 8px; border-radius: 50%;
+        }
+        .icon-network::before { top: -10px; left: -10px; }
+        .icon-network::after { bottom: -10px; right: -10px; }
+
+        /* Design Icon 3: Global Orbit Ring */
+        .icon-global {
+            width: 24px; height: 24px;
+            border: 3px solid var(--accent-yellow);
             border-radius: 50%;
+            position: relative;
+        }
+        .icon-global::after {
+            content: ''; position: absolute;
+            width: 32px; height: 10px;
+            border: 3px solid var(--primary-red);
+            border-radius: 50%;
+            top: 4px; left: -7px;
+            transform: rotate(-30deg);
         }
 
         .about-card h3 {
@@ -312,7 +371,6 @@
             line-height: 1.7;
         }
 
-        /* Stat numbers design highlight for the 3rd column */
         .stat-highlight {
             font-size: 3rem;
             font-weight: 800;
@@ -323,7 +381,6 @@
             display: block;
         }
 
-        /* --- Other Layout Placeholders --- */
         .bg-alt {
             background-color: var(--light-gray-bg);
             max-width: 100%;
@@ -388,29 +445,35 @@
 
     <section id="qui-sommes-nous">
         <h2>Qui Sommes-nous</h2>
-        <p class="section-subtitle">Découvrez notre mission, nos expertises numériques et notre impact global.</p>
+        <p class="section-subtitle">Découvrez la puissance et l'écosystème numérique intelligent de notre marque.</p>
         
         <div class="about-grid">
             <div class="about-card">
-                <div class="card-icon">🚀</div>
+                <div class="custom-icon-wrapper">
+                    <div class="icon-rocket"></div>
+                </div>
                 <h3>Innovation & Connexion</h3>
-                <p><strong>NOXIS (Casanet)</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques dans un monde chaque jour davantage connecté.</p>
+                <p><strong>NOXIS</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques dans un monde chaque jour davantage connecté.</p>
             </div>
 
             <div class="about-card">
-                <div class="card-icon">⚙️</div>
+                <div class="custom-icon-wrapper">
+                    <div class="icon-network"></div>
+                </div>
                 <h3>Solutions Sur Mesure</h3>
                 <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises auxquelles nous offrons une gamme complète de services allant de la mise en place de leur **infrastructure réseaux et IT** aux **services en ligne** et au **Cloud computing**.</p>
             </div>
 
             <div class="about-card">
-                <div class="card-icon">🌍</div>
+                <div class="custom-icon-wrapper">
+                    <div class="icon-global"></div>
+                </div>
                 <h3>Impact International</h3>
                 <div style="margin-top: 5px; margin-bottom: 15px;">
                     <span class="stat-highlight">14 Pays</span>
-                    <span style="font-weight: 700; color: var(--dark-text);">3 000 Clients Fidèles</span>
+                    <span style="font-weight: 700; color: var(--dark-text);">3 000 Clients Actifs</span>
                 </div>
-                <p>Fort de notre expansion et de notre savoir-faire, nous opérons aujourd’hui à l'échelle internationale dans 14 pays avec 3 000 clients majeurs qui nous font chaque jour confiance.</p>
+                <p>Fort de notre expansion et de notre savoir-faire global, nous opérons aujourd’hui à l'échelle internationale dans 14 pays avec 3 000 clients d'envergure qui nous font chaque jour confiance.</p>
             </div>
         </div>
     </section>
