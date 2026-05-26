@@ -17,6 +17,7 @@
             --light-bg: #FFFFFF;
             --gray-text: #555555;
             --light-gray-bg: #F8F9FA;
+            --white-glass: rgba(255, 255, 255, 0.9);
         }
 
         * {
@@ -33,7 +34,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Header & Navigation Bar --- */
+        /* --- Header Navigation --- */
         header {
             position: fixed;
             top: 0;
@@ -100,7 +101,7 @@
             color: var(--accent-orange);
         }
 
-        /* --- Hero Image Slider --- */
+        /* --- Hero Slider --- */
         .slider-container {
             position: relative;
             width: 100%;
@@ -164,7 +165,6 @@
             text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
         }
 
-        /* Slider Controls */
         .arrow {
             position: absolute;
             top: 50%;
@@ -184,14 +184,10 @@
             transition: background 0.3s ease;
         }
 
-        .arrow:hover {
-            background: var(--accent-orange);
-        }
-
+        .arrow:hover { background: var(--accent-orange); }
         .prev { left: 20px; }
         .next { right: 20px; }
 
-        /* Slider Dots Indicators */
         .dots-container {
             position: absolute;
             bottom: 30px;
@@ -216,7 +212,7 @@
             transform: scale(1.2);
         }
 
-        /* --- Sections Core Layout --- */
+        /* --- Global Section Style --- */
         section {
             padding: 100px 20px;
             max-width: 1400px;
@@ -248,111 +244,95 @@
             color: var(--gray-text);
             font-size: 1.2rem;
             margin-bottom: 50px;
-            max-width: 700px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
         }
 
-        /* --- Qui Sommes-nous Interactive Premium Layout --- */
-        .about-grid {
+        /* --- Vision Section: Brilliant Design --- */
+        .vision-container {
             display: flex;
             gap: 30px;
             justify-content: center;
-            align-items: stretch;
             flex-wrap: wrap;
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
-        .about-card {
-            background: #ffffff;
-            border: 1px solid #eef0f3;
-            border-radius: 14px;
-            padding: 45px 35px;
+        .vision-card {
+            background: var(--light-bg);
+            border-radius: 20px;
+            padding: 50px 35px;
             flex: 1;
-            min-width: 320px;
-            max-width: 420px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.01);
-            text-align: left;
+            min-width: 340px;
+            max-width: 440px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid #f1f3f5;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-            
-            /* SMOOTH TOUCH & HOVER MOTION */
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                        border-color 0.3s ease;
+            overflow: hidden;
         }
 
-        /* Top colored borders matching NOXIS theme */
-        .about-card:nth-child(1) { border-top: 4px solid var(--primary-red); }
-        .about-card:nth-child(2) { border-top: 4px solid var(--accent-orange); }
-        .about-card:nth-child(3) { border-top: 4px solid var(--accent-yellow); }
-
-        /* Smooth lift action on click, tap, or hover */
-        .about-card:hover, .about-card:active {
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-            border-color: #d2d6dc;
+        .vision-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(230, 0, 0, 0.05), rgba(255, 170, 0, 0.05));
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        /* Premium Brand Icon Wrapper */
-        .brand-icon-box {
-            width: 65px;
-            height: 65px;
-            background-color: var(--light-gray-bg);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 25px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+        .vision-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+            border-color: var(--accent-orange);
         }
 
-        /* Icon design transforms on touch/hover */
-        .about-card:hover .brand-icon-box, .about-card:active .brand-icon-box {
-            background-color: #FFF2F2;
+        .vision-card:hover::before {
+            opacity: 1;
         }
 
-        /* Font Awesome Vector Icon Styling */
-        .brand-icon-box i {
-            font-size: 1.8rem;
-            transition: transform 0.3s ease;
-        }
-
-        .about-card:nth-child(1) i { color: var(--primary-red); }
-        .about-card:nth-child(2) i { color: var(--accent-orange); }
-        .about-card:nth-child(3) i { color: var(--accent-yellow); }
-
-        /* Interactive rotation for the icons when clicked/hovered */
-        .about-card:hover i, .about-card:active i {
-            transform: scale(1.15) rotate(5deg);
-        }
-
-        .about-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 15px;
-            color: var(--dark-text);
-            font-weight: 700;
-        }
-
-        .about-card p {
-            color: var(--gray-text);
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        .stat-highlight {
+        .vision-icon {
             font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 5px;
-            display: block;
+            margin-bottom: 30px;
+            display: inline-block;
+            position: relative;
+            z-index: 2;
         }
 
+        .vision-card:nth-child(1) i { color: var(--primary-red); }
+        .vision-card:nth-child(2) i { color: var(--accent-orange); }
+        .vision-card:nth-child(3) i { color: var(--accent-yellow); }
+
+        .vision-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-text);
+            font-weight: 800;
+            position: relative;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .vision-card p {
+            color: var(--gray-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .vision-card strong {
+            color: var(--dark-text);
+            border-bottom: 2px solid var(--accent-orange);
+        }
+
+        /* --- Footer/Common Settings --- */
         .bg-alt {
             background-color: var(--light-gray-bg);
             max-width: 100%;
@@ -419,41 +399,47 @@
         <h2>Qui Sommes-nous</h2>
         <p class="section-subtitle">Découvrez la puissance et l'écosystème numérique intelligent de notre marque.</p>
         
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="brand-icon-box">
-                    <i class="fa-solid fa-rocket"></i>
-                </div>
-                <h3>Innovation & Connexion</h3>
-                <p><strong>NOXIS</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques dans un monde chaque jour davantage connecté.</p>
+        <div style="display: flex; gap: 30px; justify-content: center; flex-wrap: wrap; margin-top: 20px;">
+            <div style="background: white; border: 1px solid #eef0f3; border-radius: 14px; padding: 45px 35px; flex: 1; min-width: 320px; max-width: 420px; text-align: left; border-top: 4px solid var(--primary-red);">
+                <div style="font-size: 2rem; color: var(--primary-red); margin-bottom: 20px;"><i class="fa-solid fa-rocket"></i></div>
+                <h3 style="margin-bottom: 15px;">Innovation & Connexion</h3>
+                <p style="color: var(--gray-text); line-height: 1.7;"><strong>NOXIS</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques.</p>
             </div>
-
-            <div class="about-card">
-                <div class="brand-icon-box">
-                    <i class="fa-solid fa-network-wired"></i>
-                </div>
-                <h3>Solutions Sur Mesure</h3>
-                <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises auxquelles nous offrons une gamme complète de services allant de la mise en place de leur infrastructure réseaux et IT aux services en ligne et au Cloud computing.</p>
+            <div style="background: white; border: 1px solid #eef0f3; border-radius: 14px; padding: 45px 35px; flex: 1; min-width: 320px; max-width: 420px; text-align: left; border-top: 4px solid var(--accent-orange);">
+                <div style="font-size: 2rem; color: var(--accent-orange); margin-bottom: 20px;"><i class="fa-solid fa-network-wired"></i></div>
+                <h3 style="margin-bottom: 15px;">Solutions Sur Mesure</h3>
+                <p style="color: var(--gray-text); line-height: 1.7;">Nos solutions répondent aux besoins croissants de connectivité et de productivité : infrastructure réseaux, IT, services en ligne et Cloud computing.</p>
             </div>
-
-            <div class="about-card">
-                <div class="brand-icon-box">
-                    <i class="fa-solid fa-globe"></i>
-                </div>
-                <h3>Impact International</h3>
-                <div style="margin-top: 5px; margin-bottom: 15px;">
-                    <span class="stat-highlight">14 Pays</span>
-                    <span style="font-weight: 700; color: var(--dark-text);">3 000 Clients Actifs</span>
-                </div>
-                <p>Fort de notre expansion et de notre savoir-faire global, nous opérons aujourd’hui à l'échelle internationale dans 14 pays avec 3 000 clients d'envergure qui nous font chaque jour confiance.</p>
+            <div style="background: white; border: 1px solid #eef0f3; border-radius: 14px; padding: 45px 35px; flex: 1; min-width: 320px; max-width: 420px; text-align: left; border-top: 4px solid var(--accent-yellow);">
+                <div style="font-size: 2rem; color: var(--accent-yellow); margin-bottom: 20px;"><i class="fa-solid fa-globe"></i></div>
+                <h3 style="margin-bottom: 15px;">Impact International</h3>
+                <p style="color: var(--gray-text); line-height: 1.7;">Nous opérons aujourd’hui dans 14 pays avec 3 000 clients majeurs qui nous font chaque jour confiance.</p>
             </div>
         </div>
     </section>
 
     <section id="vision" class="bg-alt">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2>Vision</h2>
-            <p style="color: var(--gray-text); font-size: 1.1rem; line-height: 1.6; max-width: 800px; margin: 0 auto;">Se positionner comme le catalyseur incontournable de l'écosystème numérique intelligent de demain.</p>
+        <h2>Notre Vision</h2>
+        <p class="section-subtitle">Bâtir un avenir numérique sans frontières où NOXIS redéfinit l'excellence technologique.</p>
+        
+        <div class="vision-container">
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fa-solid fa-ranking-star"></i></div>
+                <h3>Acteur Majeur</h3>
+                <p>NOXIS se veut être une <strong>entreprise performante</strong>, un acteur majeur des services numériques contribuant à développer l'usage des nouvelles technologies.</p>
+            </div>
+
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                <h3>Expansion Globale</h3>
+                <p>Fort de notre position solide au <strong>Maroc</strong>, nous amorçons un développement international ambitieux, notamment en <strong>Afrique</strong>.</p>
+            </div>
+
+            <div class="vision-card">
+                <div class="vision-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                <h3>Création de Valeur</h3>
+                <p>Une entreprise où <strong>il fait bon travailler</strong>, créant de la valeur durable pour toutes nos parties prenantes et partenaires.</p>
+            </div>
         </div>
     </section>
 
