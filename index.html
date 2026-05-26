@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOXIS - Behind Every Smart Business</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* --- Root Colors from NOXIS Logo --- */
         :root {
@@ -276,26 +279,26 @@
             flex-direction: column;
             cursor: pointer;
             
-            /* SMOOTH MOTION ANIMATION SETUP */
-            transition: transform 0.4s cubic-bezier(0.16. 1, 0.3, 1), 
+            /* SMOOTH TOUCH & HOVER MOTION */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                         border-color 0.3s ease;
         }
 
-        /* Border highlights based on logo palette */
+        /* Top colored borders matching NOXIS theme */
         .about-card:nth-child(1) { border-top: 4px solid var(--primary-red); }
         .about-card:nth-child(2) { border-top: 4px solid var(--accent-orange); }
         .about-card:nth-child(3) { border-top: 4px solid var(--accent-yellow); }
 
-        /* INTERACTIVE TRIGGER: Moves up dramatically on hover or mobile touch */
+        /* Smooth lift action on click, tap, or hover */
         .about-card:hover, .about-card:active {
             transform: translateY(-12px) scale(1.02);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
             border-color: #d2d6dc;
         }
 
-        /* Custom Vector-Style CSS UI Icons (No Emojis) */
-        .custom-icon-wrapper {
+        /* Premium Brand Icon Wrapper */
+        .brand-icon-box {
             width: 65px;
             height: 65px;
             background-color: var(--light-gray-bg);
@@ -307,55 +310,24 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
-        /* Icon shapes morph up dynamically when card expands */
-        .about-card:hover .custom-icon-wrapper {
-            background-color: #fff2f2;
-            transform: rotate(5deg);
+        /* Icon design transforms on touch/hover */
+        .about-card:hover .brand-icon-box, .about-card:active .brand-icon-box {
+            background-color: #FFF2F2;
         }
 
-        /* Design Icon 1: Tech Rocket Arrow */
-        .icon-rocket {
-            width: 0; height: 0;
-            border-left: 12px solid transparent;
-            border-right: 12px solid transparent;
-            border-bottom: 24px solid var(--primary-red);
-            position: relative;
-        }
-        .icon-rocket::after {
-            content: ''; position: absolute;
-            top: 20px; left: -6px;
-            width: 12px; height: 6px;
-            background: var(--accent-orange);
+        /* Font Awesome Vector Icon Styling */
+        .brand-icon-box i {
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
         }
 
-        /* Design Icon 2: Microchips/Network Node Grid */
-        .icon-network {
-            width: 20px; height: 20px;
-            border: 3px solid var(--accent-orange);
-            border-radius: 4px;
-            position: relative;
-        }
-        .icon-network::before, .icon-network::after {
-            content: ''; position: absolute; background: var(--accent-yellow);
-            width: 8px; height: 8px; border-radius: 50%;
-        }
-        .icon-network::before { top: -10px; left: -10px; }
-        .icon-network::after { bottom: -10px; right: -10px; }
+        .about-card:nth-child(1) i { color: var(--primary-red); }
+        .about-card:nth-child(2) i { color: var(--accent-orange); }
+        .about-card:nth-child(3) i { color: var(--accent-yellow); }
 
-        /* Design Icon 3: Global Orbit Ring */
-        .icon-global {
-            width: 24px; height: 24px;
-            border: 3px solid var(--accent-yellow);
-            border-radius: 50%;
-            position: relative;
-        }
-        .icon-global::after {
-            content: ''; position: absolute;
-            width: 32px; height: 10px;
-            border: 3px solid var(--primary-red);
-            border-radius: 50%;
-            top: 4px; left: -7px;
-            transform: rotate(-30deg);
+        /* Interactive rotation for the icons when clicked/hovered */
+        .about-card:hover i, .about-card:active i {
+            transform: scale(1.15) rotate(5deg);
         }
 
         .about-card h3 {
@@ -449,24 +421,24 @@
         
         <div class="about-grid">
             <div class="about-card">
-                <div class="custom-icon-wrapper">
-                    <div class="icon-rocket"></div>
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-rocket"></i>
                 </div>
                 <h3>Innovation & Connexion</h3>
                 <p><strong>NOXIS</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques dans un monde chaque jour davantage connecté.</p>
             </div>
 
             <div class="about-card">
-                <div class="custom-icon-wrapper">
-                    <div class="icon-network"></div>
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-network-wired"></i>
                 </div>
                 <h3>Solutions Sur Mesure</h3>
-                <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises auxquelles nous offrons une gamme complète de services allant de la mise en place de leur **infrastructure réseaux et IT** aux **services en ligne** et au **Cloud computing**.</p>
+                <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises auxquelles nous offrons une gamme complète de services allant de la mise en place de leur infrastructure réseaux et IT aux services en ligne et au Cloud computing.</p>
             </div>
 
             <div class="about-card">
-                <div class="custom-icon-wrapper">
-                    <div class="icon-global"></div>
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-globe"></i>
                 </div>
                 <h3>Impact International</h3>
                 <div style="margin-top: 5px; margin-bottom: 15px;">
