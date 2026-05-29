@@ -425,7 +425,7 @@
                     <li><a href="#vision" class="nav-link">Vision</a></li>
                     <li><a href="#valeurs" class="nav-link">Nos Valeurs</a></li>
                     <li><a href="produits-services.html" class="nav-link">Produits et Services</a></li>
-                    <li><a href="#partenaires" class="nav-link">Nos Partenaires</a></li>
+                    <li><a href="nos-partenaires.html" class="nav-link">Nos Partenaires</a></li>
                     <li><a href="#clients" class="nav-link">Nos Clients</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -523,96 +523,4 @@
 
     <section id="valeurs">
         <h2>Nos Valeurs</h2>
-        <p class="section-subtitle">Les principes fondamentaux qui guident nos actions et forgent notre identité au quotidien.</p>
-        
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>Confiance</h3>
-                <p>We make each other trustful and prompt trust with our partners everyday.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
-                <h3>Motivation</h3>
-                <p>Bâtir ensemble la meilleure entreprise de services numériques et offerir les meilleurs produits.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                <h3>Implication</h3>
-                <p>Engagés aux côtés de nos clients pour trouver chaque jour les solutions les plus pertinentes.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                <h3>Innovation</h3>
-                <p>Nous innovons en continu pour améliorer l'expérience utilisateur globale de nos clients.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-award"></i></div>
-                <h3>Excellence</h3>
-                <p>Tout ce que nous entreprenons est guidé par le prisme et l'exigence de l'excellence absolue.</p>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // --- Carousel Logic ---
-        let currentIndex = 0;
-        const slides = document.getElementById('sliderTrack');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = 3;
-        const autoSlideInterval = 5000;
-        let autoSlideTimer;
-
-        function updateSlider() {
-            slides.style.transform = `translateX(-${currentIndex * 33.333}%)`;
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-            resetTimer();
-        }
-
-        function moveSlide(direction) {
-            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-            updateSlider();
-        }
-
-        function setSlide(index) {
-            currentIndex = index;
-            updateSlider();
-        }
-
-        function resetTimer() {
-            clearInterval(autoSlideTimer);
-            autoSlideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
-        }
-
-        resetTimer();
-
-        // --- Active state script for smooth scrolling highlight ---
-        const menuLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section, main');
-
-        window.addEventListener('scroll', () => {
-            let currentSectionId = 'accueil';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    currentSectionId = section.getAttribute('id');
-                }
-            });
-
-            menuLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        <p class="section-subtitle">Les principes fondamentaux qui guident nos actions et forgent notre identité au
