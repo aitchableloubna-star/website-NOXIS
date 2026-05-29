@@ -96,7 +96,7 @@
             white-space: nowrap;
         }
 
-        /* --- CORRECTION: Hover effect & Active state sets to Red --- */
+        /* --- Hover effect & Active state sets to Red --- */
         nav ul li a:hover, 
         nav ul li a.active {
             color: var(--primary-red) !important;
@@ -416,7 +416,7 @@
     <header>
         <div class="nav-container">
             <div class="logo-area">
-                <img src="logo.png" alt="NOXIS Logo">
+                <a href="#accueil"><img src="logo.png" alt="NOXIS Logo"></a>
             </div>
             <nav>
                 <ul>
@@ -424,7 +424,7 @@
                     <li><a href="#qui-sommes-nous" class="nav-link">Qui Sommes-nous</a></li>
                     <li><a href="#vision" class="nav-link">Vision</a></li>
                     <li><a href="#valeurs" class="nav-link">Nos Valeurs</a></li>
-                    <li><a href="services.html" class="nav-link">Produits et Services</a></li>
+                    <li><a href="produits-services.html" class="nav-link">Produits et Services</a></li>
                     <li><a href="#partenaires" class="nav-link">Nos Partenaires</a></li>
                     <li><a href="#clients" class="nav-link">Nos Clients</a></li>
                     <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -535,7 +535,7 @@
             <div class="value-card">
                 <div class="value-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
                 <h3>Motivation</h3>
-                <p>Bâtir ensemble la meilleure entreprise de services numériques et offrir les meilleurs produits.</p>
+                <p>Bâtir ensemble la meilleure entreprise de services numériques et offerir les meilleurs produits.</p>
             </div>
 
             <div class="value-card">
@@ -592,7 +592,7 @@
 
         resetTimer();
 
-        // --- CORRECTION: Active state script for smooth scrolling highlight ---
+        // --- Active state script for smooth scrolling highlight ---
         const menuLinks = document.querySelectorAll('.nav-link');
         const sections = document.querySelectorAll('section, main');
 
