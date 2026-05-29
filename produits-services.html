@@ -33,7 +33,7 @@
             scroll-behavior: smooth;
         }
 
-        /* --- Header & Navigation Bar (Matches index.html exactly) --- */
+        /* --- Header & Navigation Bar --- */
         header {
             position: fixed;
             top: 0;
@@ -96,8 +96,10 @@
             white-space: nowrap;
         }
 
-        nav ul li a:hover, nav ul li a.active {
-            color: var(--accent-orange);
+        /* --- CORRECTION: Active text element sets cleanly to Red --- */
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: var(--primary-red) !important;
         }
 
         /* --- Custom Minimalist Banner for Sub-Pages --- */
@@ -148,19 +150,16 @@
             cursor: pointer;
             position: relative;
             overflow: hidden;
-            /* SMOOTH MOTION ANIMATION SETUP */
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
                         border-color 0.3s ease;
         }
 
-        /* Border highlights mapped cleanly to the spectrum */
         .service-cluster-card:nth-child(1) { border-top: 5px solid var(--primary-red); }
         .service-cluster-card:nth-child(2) { border-top: 5px solid var(--accent-orange); }
         .service-cluster-card:nth-child(3) { border-top: 5px solid var(--accent-yellow); }
         .service-cluster-card:nth-child(4) { border-top: 5px solid var(--primary-red); }
 
-        /* Elevation Motion & Glowing Shadows on interaction */
         .service-cluster-card:hover, .service-cluster-card:active {
             transform: translateY(-15px);
             border-color: #d2d6dc;
@@ -189,7 +188,6 @@
         .service-cluster-card:nth-child(3) .service-circle-icon { color: var(--accent-yellow); }
         .service-cluster-card:nth-child(4) .service-circle-icon { color: var(--primary-red); }
 
-        /* High tech rotating morph on icon box */
         .service-cluster-card:hover .service-circle-icon, .service-cluster-card:active .service-circle-icon {
             transform: scale(1.1) rotate(360deg);
             background-color: var(--dark-text);
@@ -205,7 +203,7 @@
         }
 
         .service-cluster-card h2::after {
-            display: none; /* Disables underline on card headers */
+            display: none;
         }
 
         .service-cluster-card p {
@@ -240,7 +238,7 @@
                     <li><a href="index.html#qui-sommes-nous">Qui Sommes-nous</a></li>
                     <li><a href="index.html#vision">Vision</a></li>
                     <li><a href="index.html#valeurs">Nos Valeurs</a></li>
-                    <li><a href="Produits et Services.html" class="active">Produits et Services</a></li>
+                    <li><a href="services.html" class="active">Produits et Services</a></li>
                     <li><a href="index.html#partenaires">Nos Partenaires</a></li>
                     <li><a href="index.html#clients">Nos Clients</a></li>
                     <li><a href="index.html#contact">Contact</a></li>
