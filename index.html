@@ -32,7 +32,6 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
         /* --- Header & Navigation Bar --- */
@@ -96,20 +95,35 @@
             font-size: 1rem;
             transition: color 0.3s ease;
             white-space: nowrap;
+            cursor: pointer;
         }
 
         /* --- Hover effect & Active state sets to Red --- */
         nav ul li a:hover, 
         nav ul li a.active {
             color: var(--primary-red) !important;
+            font-weight: 700;
+        }
+
+        /* --- Viewport Wrapper for Section Switching --- */
+        .main-wrapper {
+            margin-top: 90px; /* Leave space for fixed header */
+        }
+
+        /* Dynamic Content Sections Control */
+        .content-section {
+            display: none; /* Hidden unless marked active */
+        }
+
+        .content-section.active {
+            display: block;
         }
 
         /* --- Hero Image Slider --- */
         .slider-container {
             position: relative;
             width: 100%;
-            height: 80vh;
-            margin-top: 90px; 
+            height: 75vh;
             overflow: hidden;
             background-color: #000;
         }
@@ -217,7 +231,7 @@
 
         /* --- Sections Universal Layout --- */
         section {
-            padding: 100px 20px;
+            padding: 80px 20px;
             max-width: 1400px;
             margin: 0 auto;
             text-align: center;
@@ -414,7 +428,7 @@
 
         /* --- PREMIUM PARTNERS STYLES --- */
         .partners-section {
-            padding: 100px 20px;
+            padding: 60px 20px 100px 20px;
             background-color: var(--light-gray-bg);
             max-width: 100%;
             overflow: hidden;
@@ -477,7 +491,6 @@
             filter: grayscale(0%) opacity(1);
         }
 
-        /* Safe balance scaling configuration for the square Microsoft logo layout aspect ratio */
         .logo-microsoft {
             max-width: 90% !important;
             transform: scale(1.15);
@@ -487,6 +500,77 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+
+        /* --- CONTACT FOOTER STYLES --- */
+        footer {
+            background-color: var(--dark-contact-bg);
+            color: #ffffff;
+            padding: 60px 20px;
+            border-top: 3px solid var(--primary-red);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 50px;
+        }
+
+        .contact-info, .contact-form {
+            flex: 1;
+            min-width: 320px;
+        }
+
+        .contact-info h3, .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            color: var(--contact-muted);
+            font-size: 1.05rem;
+        }
+
+        .contact-info p strong {
+            color: #ffffff;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 15px;
+            border: 1px solid #333;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-red);
+        }
+
+        .contact-form button {
+            background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+            color: #ffffff;
+            border: none;
+            padding: 14px 35px;
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: opacity 0.3s;
+        }
+
+        .contact-form button:hover {
+            opacity: 0.9;
+        }
     </style>
 </head>
 <body>
@@ -494,229 +578,260 @@
     <header>
         <div class="nav-container">
             <div class="logo-area">
-                <a href="#accueil"><img src="logo.png" alt="NOXIS Logo"></a>
+                <a onclick="showSection('accueil')"><img src="logo.png" alt="NOXIS Logo"></a>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#accueil" class="nav-link active">Accueil</a></li>
-                    <li><a href="#qui-sommes-nous" class="nav-link">Qui Sommes-nous</a></li>
-                    <li><a href="#vision" class="nav-link">Vision</a></li>
-                    <li><a href="#valeurs" class="nav-link">Nos Valeurs</a></li>
-                    <li><a href="produits-services.html" class="nav-link">Produits et Services</a></li>
-                    <li><a href="nos-partenaires.html" class="nav-link">Nos Partenaires</a></li>
-                    <li><a href="nos-clients.html" class="nav-link">Nos Clients</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    <li><a id="link-accueil" onclick="showSection('accueil')">Accueil</a></li>
+                    <li><a id="link-qui-sommes-nous" onclick="showSection('qui-sommes-nous')">Qui Sommes-nous</a></li>
+                    <li><a id="link-vision" onclick="showSection('vision')">Vision</a></li>
+                    <li><a id="link-valeurs" onclick="showSection('valeurs')">Nos Valeurs</a></li>
+                    <li><a id="link-partenaires" onclick="showSection('partenaires')">Nos Partenaires</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <main id="accueil">
-        <div class="slider-container">
-            <button class="arrow prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="arrow next" onclick="moveSlide(1)">&#10095;</button>
-            
-            <div class="slides" id="sliderTrack">
-                <div class="slide" style="background-image: url('image1hero.png');">
-                    <div class="slide-content">
-                        <h1>L'engagement total</h1>
-                        <p>Notre principe inflexible pour servir nos partenaires.</p>
-                    </div>
-                </div>
-                <div class="slide" style="background-image: url('image2hero.png');">
-                    <div class="slide-content">
-                        <h1>Le progrès</h1>
-                        <p>Une force motrice qui motive notre vision de l'avenir.</p>
-                    </div>
-                </div>
-                <div class="slide" style="background-image: url('image3hero.png');">
-                    <div class="slide-content">
-                        <h1>L'innovation</h1>
-                        <p>Comme philosophie qui régit notre fonctionnement d'entreprise.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dots-container">
-                <span class="dot active" onclick="setSlide(0)"></span>
-                <span class="dot" onclick="setSlide(1)"></span>
-                <span class="dot" onclick="setSlide(2)"></span>
-            </div>
-        </div>
-    </main>
-
-    <section id="qui-sommes-nous">
-        <h2>Qui Sommes-nous</h2>
-        <p class="section-subtitle">Découvrez notre mission, nos expertises numériques et notre impact global.</p>
+    <div class="main-wrapper">
         
-        <div class="interactive-grid">
-            <div class="interactive-card card-red">
-                <div class="icon-box"><i class="fa-solid fa-rocket"></i></div>
-                <h3>Innovation & Connexion</h3>
-                <p><strong>NOXIS</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques dans un monde chaque jour davantage connecté.</p>
-            </div>
-
-            <div class="interactive-card card-orange">
-                <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
-                <h3>Solutions Sur Mesure</h3>
-                <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises auxquelles nous offrons une gamme complète de services allant de la mise en place de leur infrastructure réseaux et IT aux services en ligne et au Cloud computing.</p>
-            </div>
-
-            <div class="interactive-card card-yellow">
-                <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
-                <h3>Impact International</h3>
-                <div style="margin-top: 5px; margin-bottom: 15px;">
-                    <span class="stat-highlight">14 Pays</span>
-                    <span style="font-weight: 700; color: var(--dark-text);">3 000 Clients Actifs</span>
-                </div>
-                <p>Fort de notre expansion et de notre savoir-faire global, nous opérons aujourd’hui à l'échelle internationale dans 14 pays avec 3 000 clients d'envergure qui nous font chaque jour confiance.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="vision" class="bg-alt">
-        <h2>Notre Vision</h2>
-        <p class="section-subtitle">Bâtir un avenir numérique de confiance où NOXIS redéfinit l'excellence technologique.</p>
-        
-        <div class="interactive-grid">
-            <div class="interactive-card card-red">
-                <div class="icon-box"><i class="fa-solid fa-ranking-star"></i></div>
-                <h3>Acteur Majeur</h3>
-                <p>NOXIS se veut être une entreprise performante, dans laquelle il fait bon travailler, un des acteurs majeurs des services numériques qui contribue à développer de manière significative l’usage des nouvelles technologies.</p>
-            </div>
-
-            <div class="interactive-card card-orange">
-                <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
-                <h3>Expansion Africaine</h3>
-                <p>Fort de notre position solide au <strong>Maroc</strong>, nous aurons amorcé un development international ambitieux, notamment en <strong>Afrique</strong> pour exporter notre savoir-faire unique.</p>
-            </div>
-
-            <div class="interactive-card card-yellow">
-                <div class="icon-box"><i class="fa-solid fa-hand-holding-heart"></i></div>
-                <h3>Création de Valeur</h3>
-                <p>Nos produits et services innovants contribueront, en outre, à créer de la valeur durable et mesurable pour toutes les parties prenantes et partenaires stratégiques de l’entreprise.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="valeurs">
-        <h2>Nos Valeurs</h2>
-        <p class="section-subtitle">Les principes fondamentaux qui guident nos actions et forgent notre identité au quotidien.</p>
-        
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>Confiance</h3>
-                <p>We make each other trustful and prompt trust with our partners everyday.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
-                <h3>Motivation</h3>
-                <p>Bâtir ensemble la meilleure entreprise de services numériques et offerir les meilleurs produits.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-handshake-angle"></i></div>
-                <h3>Implication</h3>
-                <p>Engagés aux côtés de nos clients pour trouver chaque jour les solutions les plus pertinentes.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                <h3>Innovation</h3>
-                <p>Nous innovons en continu pour améliorer l'experience utilisateur globale de nos clients.</p>
-            </div>
-
-            <div class="value-card">
-                <div class="value-icon"><i class="fa-solid fa-award"></i></div>
-                <h3>Excellence</h3>
-                <p>Tout ce que nous entreprenons est guided par le prisme et l'exigence de l'excellence absolue.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="partenaires" class="partners-section">
-        <h2>Nos Partenaires</h2>
-        <p class="section-subtitle">Découvrez la puissance et l'écosystème numérique intelligent de notre marque.</p>
-        
-        <div class="marquee-wrapper">
-            <div class="marquee-track">
-                <div class="partner-card"><img src="Microsoft.png" alt="Microsoft Logo" class="partner-logo logo-microsoft"></div>
-                <div class="partner-card"><img src="Cisco.png" alt="Cisco Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="Hitachi.png" alt="Hitachi Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="alc.png" alt="Alcatel Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="forc.png" alt="Forcepoint Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="fortinet.png" alt="Fortinet Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="hp.png" alt="HP ArcSight Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="intersec.png" alt="Intersec Logo" class="partner-logo"></div>
+        <main id="accueil" class="content-section">
+            <div class="slider-container">
+                <button class="arrow prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="arrow next" onclick="moveSlide(1)">&#10095;</button>
                 
-                <div class="partner-card"><img src="Microsoft.png" alt="Microsoft Logo" class="partner-logo logo-microsoft"></div>
-                <div class="partner-card"><img src="Cisco.png" alt="Cisco Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="Hitachi.png" alt="Hitachi Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="alc.png" alt="Alcatel Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="forc.png" alt="Forcepoint Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="fortinet.png" alt="Fortinet Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="hp.png" alt="HP ArcSight Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="intersec.png" alt="Intersec Logo" class="partner-logo"></div>
+                <div class="slides" id="sliderTrack">
+                    <div class="slide" style="background-image: url('image1hero.png');">
+                        <div class="slide-content">
+                            <h1>L'engagement total</h1>
+                            <p>Notre principe inflexible pour servir nos partenaires.</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background-image: url('image2hero.png');">
+                        <div class="slide-content">
+                            <h1>Le progrès</h1>
+                            <p>Une force motrice qui motive notre vision de l'avenir.</p>
+                        </div>
+                    </div>
+                    <div class="slide" style="background-image: url('image3hero.png');">
+                        <div class="slide-content">
+                            <h1>L'innovation</h1>
+                            <p>Comme philosophie qui régit notre fonctionnement d'entreprise.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dots-container">
+                    <span class="dot active" onclick="setSlide(0)"></span>
+                    <span class="dot" onclick="setSlide(1)"></span>
+                    <span class="dot" onclick="setSlide(2)"></span>
+                </div>
+            </div>
+        </main>
+
+        <section id="qui-sommes-nous" class="content-section">
+            <h2>Qui Sommes-nous</h2>
+            <p class="section-subtitle">Découvrez notre mission, nos expertises numériques et notre impact global.</p>
+            
+            <div class="interactive-grid">
+                <div class="interactive-card card-red">
+                    <div class="icon-box"><i class="fa-solid fa-rocket"></i></div>
+                    <h3>Innovation & Connexion</h3>
+                    <p><strong>NOXIS</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques.</p>
+                </div>
+
+                <div class="interactive-card card-orange">
+                    <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
+                    <h3>Solutions Sur Mesure</h3>
+                    <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises avec une gamme complète allant de l'infrastructure IT aux services Cloud.</p>
+                </div>
+
+                <div class="interactive-card card-yellow">
+                    <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
+                    <h3>Impact International</h3>
+                    <div style="margin-top: 5px; margin-bottom: 15px;">
+                        <span class="stat-highlight">14 Pays</span>
+                        <span style="font-weight: 700; color: var(--dark-text);">3 000 Clients Actifs</span>
+                    </div>
+                    <p>Fort de notre expansion, nous opérons aujourd’hui à l'échelle internationale dans 14 pays avec plus de 3 000 clients d'envergure qui nous font confiance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="vision" class="content-section bg-alt">
+            <h2>Notre Vision</h2>
+            <p class="section-subtitle">Bâtir un avenir numérique de confiance où NOXIS redéfinit l'excellence technologique.</p>
+            
+            <div class="interactive-grid">
+                <div class="interactive-card card-red">
+                    <div class="icon-box"><i class="fa-solid fa-ranking-star"></i></div>
+                    <h3>Acteur Majeur</h3>
+                    <p>NOXIS se veut être une entreprise performante, un des acteurs majeurs des services numériques qui contribue à développer l’usage des nouvelles technologies.</p>
+                </div>
+
+                <div class="interactive-card card-orange">
+                    <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3>Expansion Africaine</h3>
+                    <p>Fort de notre position solide au <strong>Maroc</strong>, nous aurons amorcé un développement international ambitieux, notamment en <strong>Afrique</strong> pour exporter notre savoir-faire unique.</p>
+                </div>
+
+                <div class="interactive-card card-yellow">
+                    <div class="icon-box"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                    <h3>Création de Valeur</h3>
+                    <p>Nos produits et services innovants contribueront à créer de la valeur durable et mesurable pour toutes nos parties prenantes et partenaires stratégiques.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="valeurs" class="content-section">
+            <h2>Nos Valeurs</h2>
+            <p class="section-subtitle">Les principes fondamentaux qui guident nos actions et forgent notre identité au quotidien.</p>
+            
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Confiance</h3>
+                    <p>Nous construisons une relation de confiance mutuelle et durable avec nos partenaires au quotidien.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+                    <h3>Motivation</h3>
+                    <p>Bâtir ensemble la meilleure entreprise de services numériques et offrir des produits d'élite.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid handshake-angle"></i></div>
+                    <h3>Implication</h3>
+                    <p>Engagés fermement aux côtés de nos clients pour trouver chaque jour les solutions les plus pertinentes.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>Innovation</h3>
+                    <p>Nous innovons en continu pour améliorer l'expérience utilisateur globale de nos clients.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon"><i class="fa-solid fa-award"></i></div>
+                    <h3>Excellence</h3>
+                    <p>Tout ce que nous entreprenons est guidé par le prisme et l'exigence de l'excellence absolue.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="partenaires" class="content-section partners-section">
+            <h2>Nos Partenaires</h2>
+            <p class="section-subtitle">Découvrez la puissance et l'écosystème numérique intelligent de notre marque.</p>
+            
+            <div class="marquee-wrapper">
+                <div class="marquee-track">
+                    <div class="partner-card"><img src="Microsoft.png" alt="Microsoft Logo" class="partner-logo logo-microsoft"></div>
+                    <div class="partner-card"><img src="Cisco.png" alt="Cisco Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="Hitachi.png" alt="Hitachi Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="alc.png" alt="Alcatel Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="forc.png" alt="Forcepoint Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="fortinet.png" alt="Fortinet Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="hp.png" alt="HP ArcSight Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="intersec.png" alt="Intersec Logo" class="partner-logo"></div>
+                    
+                    <div class="partner-card"><img src="Microsoft.png" alt="Microsoft Logo" class="partner-logo logo-microsoft"></div>
+                    <div class="partner-card"><img src="Cisco.png" alt="Cisco Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="Hitachi.png" alt="Hitachi Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="alc.png" alt="Alcatel Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="forc.png" alt="Forcepoint Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="fortinet.png" alt="Fortinet Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="hp.png" alt="HP ArcSight Logo" class="partner-logo"></div>
+                    <div class="partner-card"><img src="intersec.png" alt="Intersec Logo" class="partner-logo"></div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Contactez-nous</h3>
+                <p><strong>Adresse:</strong> Casablanca, Maroc</p>
+                <p><strong>Email:</strong> contact@noxis.ma</p>
+                <p><strong>Téléphone:</strong> +212 5XX XX XX XX</p>
+            </div>
+            <div class="contact-form">
+                <h3>Envoyez un message</h3>
+                <form onsubmit="event.preventDefault(); alert('Message envoyé avec succès !');">
+                    <input type="text" placeholder="Votre Nom" required>
+                    <input type="email" placeholder="Votre Email" required>
+                    <textarea rows="4" placeholder="Votre Message" required></textarea>
+                    <button type="submit">Envoyer</button>
+                </form>
             </div>
         </div>
-    </section>
+    </footer>
 
     <script>
-        // --- Carousel Logic ---
-        let currentIndex = 0;
-        const slides = document.getElementById('sliderTrack');
-        const dots = document.querySelectorAll('.dot');
-        const totalSlides = 3;
-        const autoSlideInterval = 5000;
-        let autoSlideTimer;
-
-        function updateSlider() {
-            slides.style.transform = `translateX(-${currentIndex * 33.333}%)`;
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-            resetTimer();
-        }
-
-        function moveSlide(direction) {
-            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-            updateSlider();
-        }
-
-        function setSlide(index) {
-            currentIndex = index;
-            updateSlider();
-        }
-
-        function resetTimer() {
-            clearInterval(autoSlideTimer);
-            autoSlideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
-        }
-
-        resetTimer();
-
-        // --- Active state script for smooth scrolling highlight ---
-        const menuLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section, main');
-
-        window.addEventListener('scroll', () => {
-            let currentSectionId = 'accueil';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (window.scrollY >= sectionTop) {
-                    currentSectionId = section.getAttribute('id');
-                }
+        // --- Tab Switching Logic (Section Router) ---
+        function showSection(sectionId) {
+            // Hide all sub-layout components
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
             });
 
-            menuLinks.forEach(link => {
+            // Strip active state color class from navigation links
+            document.querySelectorAll('nav ul li a').forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentSectionId}`) {
-                    link.classList.add('active');
-                }
             });
+
+            // Target and inject visibility class into chosen section wrapper
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            // Identify menu link by ID and switch highlight state to Primary Red 
+            const correspondingLink = document.getElementById('link-' + sectionId);
+            if (correspondingLink) {
+                correspondingLink.classList.add('active');
+            }
+        }
+
+        // --- Carousel Slider Module ---
+        let currentIndex = 0;
+        const slidesTrack = document.getElementById('sliderTrack');
+        const dotsList = document.querySelectorAll('.dot');
+        const totalSlidesCount = 3;
+        const slideDisplayTimerValue = 5000;
+        let automaticSlideSessionTimer;
+
+        function refreshSliderTrackPosition() {
+            if(slidesTrack) {
+                slidesTrack.style.transform = `translateX(-${currentIndex * 33.333}%)`;
+            }
+            dotsList.forEach((dotElement, dotIndex) => {
+                dotElement.classList.toggle('active', dotIndex === currentIndex);
+            });
+            initiateAutoPlaySequence();
+        }
+
+        function moveSlide(directionSteps) {
+            currentIndex = (currentIndex + directionSteps + totalSlidesCount) % totalSlidesCount;
+            refreshSliderTrackPosition();
+        }
+
+        function setSlide(targetSlideIndex) {
+            currentIndex = targetSlideIndex;
+            refreshSliderTrackPosition();
+        }
+
+        function initiateAutoPlaySequence() {
+            clearInterval(automaticSlideSessionTimer);
+            automaticSlideSessionTimer = setInterval(() => moveSlide(1), slideDisplayTimerValue);
+        }
+
+        // --- Lifecyle Hook initialization ---
+        window.addEventListener('DOMContentLoaded', () => {
+            // Requirement check: Force launch window onto Partners component explicitly, leaving text link styled red
+            showSection('partenaires');
+            initiateAutoPlaySequence();
         });
     </script>
 </body>
