@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produits et Services - NOXIS</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Root Colors from NOXIS Logo --- */
+        :root {
+            --primary-red: #E60000;
+            --accent-orange: #FF6A00;
+            --accent-yellow: #FFAA00;
+            --dark-text: #111111;
+            --light-bg: #FFFFFF;
+            --gray-text: #555555;
+            --light-gray-bg: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header & Navigation Bar (Matches index.html exactly) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            border-bottom: 1px solid #f0f0f0;
+            height: 90px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .logo-area {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 1010;
+        }
+
+        .logo-area img {
+            height: 140px;  
+            width: auto;    
+            display: block;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+        }
+
+        nav {
+            margin-left: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            align-items: center;
+            height: 100%;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--accent-orange);
+        }
+
+        /* --- Custom Minimalist Banner for Sub-Pages --- */
+        .page-banner {
+            margin-top: 90px;
+            background: linear-gradient(135deg, #111111 0%, #222222 100%);
+            color: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .page-banner h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .page-banner p {
+            color: #cccccc;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* --- Main Services Grid Section --- */
+        .services-section {
+            padding: 80px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-cluster {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .service-cluster-card {
+            background: #ffffff;
+            border: 1px solid #eef0f3;
+            border-radius: 18px;
+            padding: 50px 30px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            /* SMOOTH MOTION ANIMATION SETUP */
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.3s ease;
+        }
+
+        /* Border highlights mapped cleanly to the spectrum */
+        .service-cluster-card:nth-child(1) { border-top: 5px solid var(--primary-red); }
+        .service-cluster-card:nth-child(2) { border-top: 5px solid var(--accent-orange); }
+        .service-cluster-card:nth-child(3) { border-top: 5px solid var(--accent-yellow); }
+        .service-cluster-card:nth-child(4) { border-top: 5px solid var(--primary-red); }
+
+        /* Elevation Motion & Glowing Shadows on interaction */
+        .service-cluster-card:hover, .service-cluster-card:active {
+            transform: translateY(-15px);
+            border-color: #d2d6dc;
+        }
+
+        .service-cluster-card:nth-child(1):hover { box-shadow: 0 22px 45px rgba(230, 0, 0, 0.08); }
+        .service-cluster-card:nth-child(2):hover { box-shadow: 0 22px 45px rgba(255, 106, 0, 0.08); }
+        .service-cluster-card:nth-child(3):hover { box-shadow: 0 22px 45px rgba(255, 170, 0, 0.08); }
+        .service-cluster-card:nth-child(4):hover { box-shadow: 0 22px 45px rgba(230, 0, 0, 0.08); }
+
+        .service-circle-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 30px auto;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            background-color: var(--light-gray-bg);
+            transition: transform 0.5s ease, background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .service-cluster-card:nth-child(1) .service-circle-icon { color: var(--primary-red); }
+        .service-cluster-card:nth-child(2) .service-circle-icon { color: var(--accent-orange); }
+        .service-cluster-card:nth-child(3) .service-circle-icon { color: var(--accent-yellow); }
+        .service-cluster-card:nth-child(4) .service-circle-icon { color: var(--primary-red); }
+
+        /* High tech rotating morph on icon box */
+        .service-cluster-card:hover .service-circle-icon, .service-cluster-card:active .service-circle-icon {
+            transform: scale(1.1) rotate(360deg);
+            background-color: var(--dark-text);
+            color: #ffffff !important;
+        }
+
+        .service-cluster-card h2 {
+            font-size: 1.5rem;
+            color: var(--dark-text);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: none;
+        }
+
+        .service-cluster-card h2::after {
+            display: none; /* Disables underline on card headers */
+        }
+
+        .service-cluster-card p {
+            font-size: 1.05rem;
+            color: var(--gray-text);
+            line-height: 1.7;
+        }
+
+        /* --- Simple Modern Footer --- */
+        footer {
+            background-color: #111111;
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+        footer p {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <a href="index.html"><img src="logo.png" alt="NOXIS Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#accueil">Accueil</a></li>
+                    <li><a href="index.html#qui-sommes-nous">Qui Sommes-nous</a></li>
+                    <li><a href="index.html#vision">Vision</a></li>
+                    <li><a href="index.html#valeurs">Nos Valeurs</a></li>
+                    <li><a href="Produits et Services.html" class="active">Produits et Services</a></li>
+                    <li><a href="index.html#partenaires">Nos Partenaires</a></li>
+                    <li><a href="index.html#clients">Nos Clients</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-banner">
+        <h1>Produits & Services</h1>
+        <p>Des architectures d'infrastructure robustes aux solutions applicatives de pointe adaptées à votre transformation.</p>
+    </div>
+
+    <main class="services-section">
+        <div class="services-cluster">
+            
+            <div class="service-cluster-card">
+                <div class="service-circle-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                <h2>Réseaux et Systèmes</h2>
+                <p>Conception, déploiement et sécurisation de vos architectures physiques pour assurer une connectivité d'entreprise robuste et sans interruption.</p>
+            </div>
+
+            <div class="service-cluster-card">
+                <div class="service-circle-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <h2>Solutions IT</h2>
+                <p>Intégrité et intégration d'outils métiers intelligents, d'automatisation et de gestion de données optimisés pour catalyser l'efficacité opérationnelle.</p>
+            </div>
+
+            <div class="service-cluster-card">
+                <div class="service-circle-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                <h2>Services en Cloud</h2>
+                <p>Migration agile, hébergement hautement disponible, infrastructures virtualisées et infogérance globale de vos environnements Cloud évolutifs.</p>
+            </div>
+
+            <div class="service-cluster-card">
+                <div class="service-circle-icon"><i class="fa-solid fa-globe-americas"></i></div>
+                <h2>Services en Ligne</h2>
+                <p>Développement de plateformes web sur mesure, de portails connectés et de solutions applicatives cloud de nouvelle génération.</p>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 NOXIS. Behind Every Smart Business. Tous droits réservés.</p>
+    </footer>
+
+</body>
+</html>
