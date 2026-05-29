@@ -410,79 +410,60 @@
             line-height: 1.6;
         }
 
-        /* --- NEW ADDITION: PREMIUM PARTNERS STYLES --- */
+        /* --- FIXED & ENHANCED PARTNERS GRID --- */
         .partners-section {
             padding: 100px 20px;
-            background-color: var(--light-gray-bg);
-            max-width: 100%;
-            overflow: hidden;
         }
 
-        .marquee-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px 0;
-            display: flex;
-            overflow: hidden;
-            mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
-        }
-
-        .marquee-track {
-            display: flex;
-            width: max-content;
-            gap: 35px;
-            animation: scrollMarquee 30s linear infinite;
-        }
-
-        .marquee-wrapper:hover .marquee-track {
-            animation-play-state: paused;
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 40px auto 0 auto;
         }
 
         .partner-card {
+            background: #ffffff;
+            border: 2px solid #f0f0f0;
+            border-radius: 16px;
+            height: 160px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 240px;
-            height: 120px;
-            background: #ffffff;
-            border: 1px solid #eef0f3;
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            user-select: none;
+            padding: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .partner-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent-orange);
-            box-shadow: 0 20px 25px -5px rgba(255, 106, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.02);
-        }
-
-        .partner-logo {
-            max-width: 85%;
+        .partner-card img {
+            max-width: 80%;
             max-height: 75%;
             object-fit: contain;
-            filter: grayscale(20%) opacity(0.85);
+            filter: grayscale(20%);
             transition: filter 0.3s ease;
         }
 
-        .partner-card:hover .partner-logo {
-            filter: grayscale(0%) opacity(1);
+        /* Hover variations giving different interactive brand accent colors */
+        .partner-card.hover-red:hover {
+            transform: scale(1.06);
+            border-color: var(--primary-red);
+            box-shadow: 0 10px 25px rgba(230, 0, 0, 0.1);
+        }
+        .partner-card.hover-orange:hover {
+            transform: scale(1.06);
+            border-color: var(--accent-orange);
+            box-shadow: 0 10px 25px rgba(255, 106, 0, 0.1);
+        }
+        .partner-card.hover-yellow:hover {
+            transform: scale(1.06);
+            border-color: var(--accent-yellow);
+            box-shadow: 0 10px 25px rgba(255, 170, 0, 0.1);
         }
 
-        /* Target custom scale to fix small Microsoft layout proportions safely */
-        .logo-microsoft {
-            max-width: 95% !important;
-            transform: scale(1.35);
-        }
-
-        @keyframes scrollMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        .partner-card:hover img {
+            filter: grayscale(0%);
         }
     </style>
 </head>
@@ -500,7 +481,7 @@
                     <li><a href="#vision" class="nav-link">Vision</a></li>
                     <li><a href="#valeurs" class="nav-link">Nos Valeurs</a></li>
                     <li><a href="produits-services.html" class="nav-link">Produits et Services</a></li>
-                    <li><a href="nos-partenaires.html" class="nav-link">Nos Partenaires</a></li>
+                    <li><a href="#nos-partenaires" class="nav-link">Nos Partenaires</a></li>
                     <li><a href="nos-clients.html" class="nav-link">Nos Clients</a></li>
                     <li><a href="contact.html" class="nav-link">Contact</a></li>
                 </ul>
@@ -585,7 +566,7 @@
             <div class="interactive-card card-orange">
                 <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
                 <h3>Expansion Africaine</h3>
-                <p>Fort de notre position solide au <strong>Maroc</strong>, nous aurons amorcé un development international ambitieux, notamment en <strong>Afrique</strong> pour exporter notre savoir-faire unique.</p>
+                <p>Fort de notre position solide au <strong>Maroc</strong>, nous aurons amorcé un développement international ambitieux, notamment en <strong>Afrique</strong> pour exporter notre savoir-faire unique.</p>
             </div>
 
             <div class="interactive-card card-yellow">
@@ -628,34 +609,51 @@
             <div class="value-card">
                 <div class="value-icon"><i class="fa-solid fa-award"></i></div>
                 <h3>Excellence</h3>
-                <p>Tout ce que nous entreprenons est guidé par le prisme et l'exigence de l'excellence absolue.</p>
+                <p>Tout ce que nous entreprenons est guided par le prisme et l'exigence de l'excellence absolue.</p>
             </div>
         </div>
     </section>
 
-    <section id="partenaires" class="partners-section">
+    <section id="nos-partenaires" class="bg-alt partners-section">
         <h2>Nos Partenaires</h2>
         <p class="section-subtitle">Découvrez la puissance et l'écosystème numérique intelligent de notre marque.</p>
         
-        <div class="marquee-wrapper">
-            <div class="marquee-track">
-                <div class="partner-card"><img src="Microsoft.png" alt="Microsoft Logo" class="partner-logo logo-microsoft"></div>
-                <div class="partner-card"><img src="Cisco.png" alt="Cisco Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="Hitachi.png" alt="Hitachi Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="alc.png" alt="Alcatel Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="forc.png" alt="Forcepoint Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="fortinet.png" alt="Fortinet Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="hp.png" alt="HP ArcSight Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="intersec.png" alt="Intersec Logo" class="partner-logo"></div>
-                
-                <div class="partner-card"><img src="Microsoft.png" alt="Microsoft Logo" class="partner-logo logo-microsoft"></div>
-                <div class="partner-card"><img src="Cisco.png" alt="Cisco Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="Hitachi.png" alt="Hitachi Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="alc.png" alt="Alcatel Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="forc.png" alt="Forcepoint Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="fortinet.png" alt="Fortinet Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="hp.png" alt="HP ArcSight Logo" class="partner-logo"></div>
-                <div class="partner-card"><img src="intersec.png" alt="Intersec Logo" class="partner-logo"></div>
+        <div class="partners-grid">
+            <div class="partner-card hover-red">
+                <img src="assets/Microsoft.png" alt="Microsoft Logo">
+            </div>
+            <div class="partner-card hover-orange">
+                <img src="assets/Cisco.png" alt="Cisco Logo">
+            </div>
+            <div class="partner-card hover-yellow">
+                <img src="assets/on ur map.png" alt="On Your Map Logo">
+            </div>
+            <div class="partner-card hover-red">
+                <img src="assets/intersec.png" alt="Intersec Logo">
+            </div>
+            <div class="partner-card hover-orange">
+                <img src="assets/Hitachi.png" alt="Hitachi Logo">
+            </div>
+            <div class="partner-card hover-yellow">
+                <img src="assets/alc.png" alt="Alcatel Logo">
+            </div>
+            <div class="partner-card hover-red">
+                <img src="assets/forc.png" alt="Forcepoint Logo">
+            </div>
+            <div class="partner-card hover-orange">
+                <img src="assets/fortinet.png" alt="Fortinet Logo">
+            </div>
+            <div class="partner-card hover-yellow">
+                <img src="assets/hp.png" alt="HP ArcSight Logo">
+            </div>
+            <div class="partner-card hover-red">
+                <img src="assets/paloalto.png" alt="Palo Alto Logo">
+            </div>
+            <div class="partner-card hover-orange">
+                <img src="assets/solarwinds.png" alt="Solarwinds Logo">
+            </div>
+            <div class="partner-card hover-yellow">
+                <img src="assets/vmware.png" alt="VMware Logo">
             </div>
         </div>
     </section>
@@ -702,7 +700,7 @@
             let currentSectionId = 'accueil';
             
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
+                const sectionTop = section.offsetTop - 120;
                 if (window.scrollY >= sectionTop) {
                     currentSectionId = section.getAttribute('id');
                 }
