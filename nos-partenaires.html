@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nos Partenaires - NOXIS</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- Couleurs de la charte NOXIS --- */
+        :root {
+            --primary-red: #E60000;
+            --accent-orange: #FF6A00;
+            --accent-yellow: #FFAA00;
+            --dark-text: #111111;
+            --light-bg: #FFFFFF;
+            --gray-text: #555555;
+            --light-gray-bg: #F8F9FA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-gray-bg);
+            color: var(--dark-text);
+            padding-top: 90px; /* Évite que le contenu passe sous le header fixe */
+        }
+
+        /* --- Header & Menu (Identique à votre page d'accueil) --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            border-bottom: 1px solid #f0f0f0;
+            height: 90px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .logo-area {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            z-index: 1010;
+        }
+
+        .logo-area img {
+            height: 140px;  
+            width: auto;    
+            display: block;
+            object-fit: contain;
+        }
+
+        nav {
+            margin-left: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 24px;
+            align-items: center;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--primary-red) !important;
+        }
+
+        /* --- Section Titre --- */
+        .partners-section {
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .partners-section h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            display: inline-block;
+            position: relative;
+        }
+
+        .partners-section h1::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-red), var(--accent-yellow));
+            margin: 10px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            color: var(--gray-text);
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+        }
+
+        /* --- Grille de Logos Responsive (4 colonnes sur PC, s'adapte sur mobile) --- */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* --- Cartes des Logos --- */
+        .partner-card {
+            background: #ffffff;
+            border: 1px solid #eef0f3;
+            border-radius: 12px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                        box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                        border-color 0.3s ease;
+        }
+
+        /* Effet moderne au survol aux couleurs de NOXIS */
+        .partner-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(230, 0, 0, 0.05);
+            border-color: var(--accent-orange);
+        }
+
+        .partner-card img {
+            max-width: 90%;
+            max-height: 80%;
+            object-fit: contain;
+            filter: grayscale(15%); /* Légère harmonisation des couleurs d'origine */
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .partner-card:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.03);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray-text);
+            font-size: 0.95rem;
+            margin-top: 100px;
+            border-top: 1px solid #eef0f3;
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <a href="index.html"><img src="logo.png" alt="NOXIS Logo"></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#accueil" class="nav-link">Accueil</a></li>
+                    <li><a href="index.html#qui-sommes-nous" class="nav-link">Qui Sommes-nous</a></li>
+                    <li><a href="index.html#vision" class="nav-link">Vision</a></li>
+                    <li><a href="index.html#valeurs" class="nav-link">Nos Valeurs</a></li>
+                    <li><a href="produits-services.html" class="nav-link">Produits et Services</a></li>
+                    <li><a href="nos-partenaires.html" class="nav-link active">Nos Partenaires</a></li>
+                    <li><a href="index.html#clients" class="nav-link">Nos Clients</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="partners-section">
+        <h1>Nos Partenaires</h1>
+        <p class="subtitle">Découvrez la puissance et l'écosystème numérique intelligent de notre marque.</p>
+        
+        <div class="partners-grid">
+            
+            <div class="partner-card">
+                <img src="Cisco.png" alt="Cisco">
+            </div>
+
+            <div class="partner-card">
+                <img src="Hitachi.png" alt="Hitachi">
+            </div>
+
+            <div class="partner-card">
+                <img src="Microsoft.png" alt="Microsoft">
+            </div>
+
+            <div class="partner-card">
+                <img src="alc.png" alt="Alcatel Lucent">
+            </div>
+
+            <div class="partner-card">
+                <img src="forc.png" alt="Forcepoint">
+            </div>
+
+            <div class="partner-card">
+                <img src="fortinet.png" alt="Fortinet">
+            </div>
+
+            <div class="partner-card">
+                <img src="hp.png" alt="HP">
+            </div>
+
+            <div class="partner-card">
+                <img src="intersec.png" alt="Intersec">
+            </div>
+
+            <div class="partner-card">
+                <img src="on%20ur%20map.png" alt="On Your Map">
+            </div>
+
+            <div class="partner-card">
+                <img src="paloalto.png" alt="Palo Alto Networks">
+            </div>
+
+            <div class="partner-card">
+                <img src="solarwinds.png" alt="SolarWinds">
+            </div>
+
+            <div class="partner-card">
+                <img src="trend.png" alt="Trend Micro">
+            </div>
+
+            <div class="partner-card">
+                <img src="vmware.png" alt="VMware">
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 NOXIS. All rights reserved. Behind Every Smart Business.</p>
+    </footer>
+
+</body>
+</html>
