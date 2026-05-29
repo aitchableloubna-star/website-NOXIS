@@ -96,8 +96,10 @@
             white-space: nowrap;
         }
 
-        nav ul li a:hover {
-            color: var(--accent-orange);
+        /* --- CORRECTION: Hover effect & Active state sets to Red --- */
+        nav ul li a:hover, 
+        nav ul li a.active {
+            color: var(--primary-red) !important;
         }
 
         /* --- Hero Image Slider --- */
@@ -254,7 +256,7 @@
             max-width: 100%;
         }
 
-        /* --- MODERN INTERACTIVE GRID COMPONENT (Shared across sections) --- */
+        /* --- MODERN INTERACTIVE GRID COMPONENT --- */
         .interactive-grid {
             display: flex;
             gap: 25px;
@@ -278,30 +280,24 @@
             display: flex;
             flex-direction: column;
             cursor: pointer;
-            
-            /* High Performance Smooth Animation Transition */
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
                         border-color 0.3s ease;
         }
 
-        /* Interactive Trigger Setup: Hover and Touch Motion Elements */
         .interactive-card:hover, .interactive-card:active {
             transform: translateY(-12px) scale(1.02);
             border-color: #d2d6dc;
         }
 
-        /* Dynamic shadow colors on interaction */
         .card-red:hover, .card-red:active { box-shadow: 0 20px 40px rgba(230, 0, 0, 0.08); }
         .card-orange:hover, .card-orange:active { box-shadow: 0 20px 40px rgba(255, 106, 0, 0.08); }
         .card-yellow:hover, .card-yellow:active { box-shadow: 0 20px 40px rgba(255, 170, 0, 0.08); }
 
-        /* Left-accent color bars */
         .card-red { border-top: 4px solid var(--primary-red); }
         .card-orange { border-top: 4px solid var(--accent-orange); }
         .card-yellow { border-top: 4px solid var(--accent-yellow); }
 
-        /* Icon Container Customization */
         .icon-box {
             width: 60px;
             height: 60px;
@@ -354,7 +350,7 @@
             display: block;
         }
 
-        /* --- SPECIFIC LAYOUT FOR VALUES (5 Columns) --- */
+        /* --- SPECIFIC LAYOUT FOR VALUES --- */
         .values-grid {
             display: flex;
             gap: 20px;
@@ -424,14 +420,14 @@
             </div>
             <nav>
                 <ul>
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#qui-sommes-nous">Qui Sommes-nous</a></li>
-                    <li><a href="#vision">Vision</a></li>
-                    <li><a href="#valeurs">Nos Valeurs</a></li>
-                    <li><a href="#services">Produits et Services</a></li>
-                    <li><a href="#partenaires">Nos Partenaires</a></li>
-                    <li><a href="#clients">Nos Clients</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+                    <li><a href="#qui-sommes-nous" class="nav-link">Qui Sommes-nous</a></li>
+                    <li><a href="#vision" class="nav-link">Vision</a></li>
+                    <li><a href="#valeurs" class="nav-link">Nos Valeurs</a></li>
+                    <li><a href="services.html" class="nav-link">Produits et Services</a></li>
+                    <li><a href="#partenaires" class="nav-link">Nos Partenaires</a></li>
+                    <li><a href="#clients" class="nav-link">Nos Clients</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -533,7 +529,7 @@
             <div class="value-card">
                 <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
                 <h3>Confiance</h3>
-                <p>Nous nous faisons confiance et inspirons confiance à nos partenaires au quotidien.</p>
+                <p>We make each other trustful and prompt trust with our partners everyday.</p>
             </div>
 
             <div class="value-card">
@@ -595,6 +591,28 @@
         }
 
         resetTimer();
+
+        // --- CORRECTION: Active state script for smooth scrolling highlight ---
+        const menuLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section, main');
+
+        window.addEventListener('scroll', () => {
+            let currentSectionId = 'accueil';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSectionId = section.getAttribute('id');
+                }
+            });
+
+            menuLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
