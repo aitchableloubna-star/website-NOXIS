@@ -1,526 +1,1236 @@
 <!DOCTYPE html>
+
 <html lang="fr">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>NOXIS - Behind Every Smart Business</title>
+
     
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     
+
     <style>
+
         /* --- Root Colors from NOXIS Logo --- */
+
         :root {
+
             --primary-red: #E60000;
+
             --accent-orange: #FF6A00;
+
             --accent-yellow: #FFAA00;
+
             --dark-text: #111111;
+
             --light-bg: #FFFFFF;
+
             --gray-text: #555555;
+
             --light-gray-bg: #F8F9FA;
+
         }
+
+
 
         * {
+
             margin: 0;
+
             padding: 0;
+
             box-sizing: border-box;
+
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
         }
+
+
 
         body {
+
             background-color: var(--light-bg);
+
             color: var(--dark-text);
+
             overflow-x: hidden;
+
             scroll-behavior: smooth;
+
         }
+
+
 
         /* --- Header & Navigation Bar --- */
+
         header {
+
             position: fixed;
+
             top: 0;
+
             left: 0;
+
             width: 100%;
+
             background-color: #FFFFFF;
+
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+
             z-index: 1000;
+
             border-bottom: 1px solid #f0f0f0;
+
             height: 90px;
+
         }
+
+
 
         .nav-container {
+
             max-width: 1400px;
+
             height: 100%;
+
             margin: 0 auto;
+
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
+
             padding: 0 30px;
+
             position: relative;
+
         }
+
+
 
         .logo-area {
+
             position: absolute;
+
             left: 30px;
+
             top: 50%;
+
             transform: translateY(-50%);
+
             display: flex;
+
             align-items: center;
+
             z-index: 1010;
+
         }
+
+
 
         .logo-area img {
+
             height: 140px;  
+
             width: auto;    
+
             display: block;
+
             object-fit: contain;
+
             filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.1));
+
         }
+
+
 
         nav {
+
             margin-left: auto;
+
         }
+
+
 
         nav ul {
+
             display: flex;
+
             list-style: none;
+
             gap: 24px;
+
             align-items: center;
+
             height: 100%;
+
         }
+
+
 
         nav ul li a {
+
             text-decoration: none;
+
             color: var(--dark-text);
+
             font-weight: 600;
+
             font-size: 1rem;
+
             transition: color 0.3s ease;
+
             white-space: nowrap;
+
         }
+
+
 
         /* --- Hover effect & Active state sets to Red --- */
+
         nav ul li a:hover, 
+
         nav ul li a.active {
+
             color: var(--primary-red) !important;
+
         }
+
+
 
         /* --- Hero Image Slider --- */
+
         .slider-container {
+
             position: relative;
+
             width: 100%;
+
             height: 80vh;
+
             margin-top: 90px; 
+
             overflow: hidden;
+
             background-color: #000;
+
         }
+
+
 
         .slides {
+
             display: flex;
+
             width: 300%;
+
             height: 100%;
+
             transition: transform 0.5s ease-in-out;
+
         }
+
+
 
         .slide {
+
             width: 33.333%;
+
             height: 100%;
+
             position: relative;
+
             background-size: cover;
+
             background-position: center;
+
             background-repeat: no-repeat;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
         }
+
+
 
         .slide::before {
+
             content: '';
+
             position: absolute;
+
             top: 0;
+
             left: 0;
+
             width: 100%;
+
             height: 100%;
+
             background: rgba(0, 0, 0, 0.4); 
+
             z-index: 1;
+
         }
+
+
 
         .slide-content {
+
             position: relative;
+
             z-index: 2;
+
             text-align: center;
+
             color: #ffffff;
+
             padding: 0 20px;
+
             max-width: 900px;
+
         }
+
+
 
         .slide-content h1 {
+
             font-size: 3.5rem;
+
             font-weight: 800;
+
             text-transform: uppercase;
+
             letter-spacing: 2px;
+
             margin-bottom: 15px;
+
             text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+
         }
+
+
 
         .slide-content p {
+
             font-size: 1.5rem;
+
             font-weight: 400;
+
             text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+
         }
+
+
 
         .arrow {
+
             position: absolute;
+
             top: 50%;
+
             transform: translateY(-50%);
+
             background: rgba(255, 255, 255, 0.2);
+
             color: #ffffff;
+
             border: none;
+
             width: 50px;
+
             height: 50px;
+
             font-size: 1.8rem;
+
             cursor: pointer;
+
             z-index: 10;
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             transition: background 0.3s ease;
+
         }
+
+
 
         .arrow:hover { background: var(--accent-orange); }
+
         .prev { left: 20px; }
+
         .next { right: 20px; }
 
+
+
         .dots-container {
+
             position: absolute;
+
             bottom: 30px;
+
             left: 50%;
+
             transform: translateX(-50%);
+
             display: flex;
+
             gap: 12px;
+
             z-index: 10;
+
         }
+
+
 
         .dot {
+
             width: 12px;
+
             height: 12px;
+
             background: rgba(255, 255, 255, 0.4);
+
             border-radius: 50%;
+
             cursor: pointer;
+
             transition: background 0.3s ease;
+
         }
+
+
 
         .dot.active {
+
             background: var(--accent-orange);
+
             transform: scale(1.2);
+
         }
+
+
 
         /* --- Sections Universal Layout --- */
+
         section {
+
             padding: 100px 20px;
+
             max-width: 1400px;
+
             margin: 0 auto;
+
             text-align: center;
+
         }
+
+
 
         section h2 {
+
             font-size: 2.5rem;
+
             margin-bottom: 15px;
+
             position: relative;
+
             display: inline-block;
+
             font-weight: 800;
+
             text-transform: uppercase;
+
             letter-spacing: 1px;
+
         }
+
+
 
         section h2::after {
+
             content: '';
+
             display: block;
+
             width: 60%;
+
             height: 4px;
+
             background: linear-gradient(90deg, var(--primary-red), var(--accent-yellow));
+
             margin: 10px auto 0 auto;
+
             border-radius: 2px;
+
         }
+
+
 
         .section-subtitle {
+
             color: var(--gray-text);
+
             font-size: 1.2rem;
+
             margin-bottom: 50px;
+
             max-width: 800px;
+
             margin-left: auto;
+
             margin-right: auto;
+
             font-weight: 400;
+
         }
+
+
 
         .bg-alt {
+
             background-color: var(--light-gray-bg);
+
             max-width: 100%;
+
         }
+
+
 
         /* --- MODERN INTERACTIVE GRID COMPONENT --- */
+
         .interactive-grid {
+
             display: flex;
+
             gap: 25px;
+
             justify-content: center;
+
             align-items: stretch;
+
             flex-wrap: wrap;
+
             margin-top: 20px;
+
         }
+
+
 
         .interactive-card {
+
             background: #ffffff;
+
             border: 1px solid #eef0f3;
+
             border-radius: 16px;
+
             padding: 40px 30px;
+
             flex: 1;
+
             min-width: 300px;
+
             max-width: 420px;
+
             box-shadow: 0 4px 20px rgba(0,0,0,0.01);
+
             text-align: left;
+
             position: relative;
+
             display: flex;
+
             flex-direction: column;
+
             cursor: pointer;
+
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+
                         box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+
                         border-color 0.3s ease;
+
         }
+
+
 
         .interactive-card:hover, .interactive-card:active {
+
             transform: translateY(-12px) scale(1.02);
+
             border-color: #d2d6dc;
+
         }
+
+
 
         .card-red:hover, .card-red:active { box-shadow: 0 20px 40px rgba(230, 0, 0, 0.08); }
+
         .card-orange:hover, .card-orange:active { box-shadow: 0 20px 40px rgba(255, 106, 0, 0.08); }
+
         .card-yellow:hover, .card-yellow:active { box-shadow: 0 20px 40px rgba(255, 170, 0, 0.08); }
 
+
+
         .card-red { border-top: 4px solid var(--primary-red); }
+
         .card-orange { border-top: 4px solid var(--accent-orange); }
+
         .card-yellow { border-top: 4px solid var(--accent-yellow); }
 
+
+
         .icon-box {
+
             width: 60px;
+
             height: 60px;
+
             background-color: var(--light-gray-bg);
+
             border-radius: 12px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             margin-bottom: 25px;
+
             transition: background-color 0.3s ease, transform 0.3s ease;
+
         }
+
+
 
         .interactive-card:hover .icon-box, .interactive-card:active .icon-box {
+
             background-color: #FFF2F2;
+
         }
+
+
 
         .icon-box i {
+
             font-size: 1.7rem;
+
             transition: transform 0.3s ease;
+
         }
+
+
 
         .card-red i { color: var(--primary-red); }
+
         .card-orange i { color: var(--accent-orange); }
+
         .card-yellow i { color: var(--accent-yellow); }
 
+
+
         .interactive-card:hover i, .interactive-card:active i {
+
             transform: scale(1.15) rotate(4deg);
+
         }
+
+
 
         .interactive-card h3 {
+
             font-size: 1.35rem;
+
             margin-bottom: 15px;
+
             color: var(--dark-text);
+
             font-weight: 700;
+
         }
+
+
 
         .interactive-card p {
+
             color: var(--gray-text);
+
             font-size: 1.05rem;
+
             line-height: 1.7;
+
         }
+
+
 
         .stat-highlight {
+
             font-size: 3rem;
+
             font-weight: 800;
+
             background: linear-gradient(135deg, var(--primary-red), var(--accent-orange));
+
             -webkit-background-clip: text;
+
             -webkit-text-fill-color: transparent;
+
             margin-bottom: 5px;
+
             display: block;
+
         }
+
+
 
         /* --- SPECIFIC LAYOUT FOR VALUES --- */
+
         .values-grid {
+
             display: flex;
+
             gap: 20px;
+
             justify-content: center;
+
             flex-wrap: wrap;
+
             margin-top: 30px;
+
         }
+
+
 
         .value-card {
+
             background: #ffffff;
+
             border: 1px solid #eef0f3;
+
             border-radius: 14px;
+
             padding: 35px 25px;
+
             flex: 1;
+
             min-width: 230px;
+
             max-width: 260px;
+
             text-align: center;
+
             cursor: pointer;
+
             box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+
             transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
         }
+
+
 
         .value-card:hover, .value-card:active {
+
             transform: translateY(-10px);
+
             box-shadow: 0 15px 35px rgba(255, 106, 0, 0.1);
+
             border-color: var(--accent-orange);
+
         }
+
+
 
         .value-icon {
+
             width: 55px;
+
             height: 55px;
+
             margin: 0 auto 20px auto;
+
             background: var(--light-gray-bg);
+
             border-radius: 50%;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             color: var(--accent-orange);
+
             font-size: 1.5rem;
+
             transition: background-color 0.3s, color 0.3s;
+
         }
+
+
 
         .value-card:hover .value-icon, .value-card:active .value-icon {
+
             background: var(--accent-orange);
+
             color: #ffffff;
+
         }
+
+
 
         .value-card h3 {
+
             font-size: 1.25rem;
+
             margin-bottom: 12px;
+
             font-weight: 700;
+
         }
+
+
 
         .value-card p {
+
             font-size: 0.95rem;
+
             color: var(--gray-text);
+
             line-height: 1.6;
+
         }
+
     </style>
+
 </head>
+
 <body>
 
+
+
     <header>
+
         <div class="nav-container">
+
             <div class="logo-area">
+
                 <a href="#accueil"><img src="logo.png" alt="NOXIS Logo"></a>
+
             </div>
+
             <nav>
+
                 <ul>
+
                     <li><a href="#accueil" class="nav-link active">Accueil</a></li>
+
                     <li><a href="#qui-sommes-nous" class="nav-link">Qui Sommes-nous</a></li>
+
                     <li><a href="#vision" class="nav-link">Vision</a></li>
+
                     <li><a href="#valeurs" class="nav-link">Nos Valeurs</a></li>
+
                     <li><a href="produits-services.html" class="nav-link">Produits et Services</a></li>
-                    <li><a href="nos-partenaires.html" class="nav-link">Nos Partenaires</a></li>
+
+                    <li><a href="#partenaires" class="nav-link">Nos Partenaires</a></li>
+
                     <li><a href="#clients" class="nav-link">Nos Clients</a></li>
+
                     <li><a href="#contact" class="nav-link">Contact</a></li>
+
                 </ul>
+
             </nav>
+
         </div>
+
     </header>
 
+
+
     <main id="accueil">
+
         <div class="slider-container">
+
             <button class="arrow prev" onclick="moveSlide(-1)">&#10094;</button>
+
             <button class="arrow next" onclick="moveSlide(1)">&#10095;</button>
+
             
+
             <div class="slides" id="sliderTrack">
+
                 <div class="slide" style="background-image: url('image1hero.png');">
+
                     <div class="slide-content">
+
                         <h1>L'engagement total</h1>
+
                         <p>Notre principe inflexible pour servir nos partenaires.</p>
+
                     </div>
+
                 </div>
+
                 <div class="slide" style="background-image: url('image2hero.png');">
+
                     <div class="slide-content">
+
                         <h1>Le progrès</h1>
+
                         <p>Une force motrice qui motive notre vision de l'avenir.</p>
+
                     </div>
+
                 </div>
+
                 <div class="slide" style="background-image: url('image3hero.png');">
+
                     <div class="slide-content">
+
                         <h1>L'innovation</h1>
+
                         <p>Comme philosophie qui régit notre fonctionnement d'entreprise.</p>
+
                     </div>
+
                 </div>
+
             </div>
+
+
 
             <div class="dots-container">
+
                 <span class="dot active" onclick="setSlide(0)"></span>
+
                 <span class="dot" onclick="setSlide(1)"></span>
+
                 <span class="dot" onclick="setSlide(2)"></span>
+
             </div>
+
         </div>
+
     </main>
 
+
+
     <section id="qui-sommes-nous">
+
         <h2>Qui Sommes-nous</h2>
+
         <p class="section-subtitle">Découvrez notre mission, nos expertises numériques et notre impact global.</p>
+
         
+
         <div class="interactive-grid">
+
             <div class="interactive-card card-red">
+
                 <div class="icon-box"><i class="fa-solid fa-rocket"></i></div>
+
                 <h3>Innovation & Connexion</h3>
+
                 <p><strong>NOXIS</strong> est une entreprise de services numériques qui innove et crée des liens entre individus et organisations en proposant les meilleures solutions technologiques dans un monde chaque jour davantage connecté.</p>
+
             </div>
+
+
 
             <div class="interactive-card card-orange">
+
                 <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
+
                 <h3>Solutions Sur Mesure</h3>
+
                 <p>Nos solutions permettent de répondre aux besoins croissants de connectivité et de productivité des entreprises auxquelles nous offrons une gamme complète de services allant de la mise en place de leur infrastructure réseaux et IT aux services en ligne et au Cloud computing.</p>
+
             </div>
 
+
+
             <div class="interactive-card card-yellow">
+
                 <div class="icon-box"><i class="fa-solid fa-globe"></i></div>
+
                 <h3>Impact International</h3>
+
                 <div style="margin-top: 5px; margin-bottom: 15px;">
+
                     <span class="stat-highlight">14 Pays</span>
+
                     <span style="font-weight: 700; color: var(--dark-text);">3 000 Clients Actifs</span>
+
                 </div>
+
                 <p>Fort de notre expansion et de notre savoir-faire global, nous opérons aujourd’hui à l'échelle internationale dans 14 pays avec 3 000 clients d'envergure qui nous font chaque jour confiance.</p>
+
             </div>
+
         </div>
+
     </section>
+
+
 
     <section id="vision" class="bg-alt">
+
         <h2>Notre Vision</h2>
+
         <p class="section-subtitle">Bâtir un avenir numérique de confiance où NOXIS redéfinit l'excellence technologique.</p>
+
         
+
         <div class="interactive-grid">
+
             <div class="interactive-card card-red">
+
                 <div class="icon-box"><i class="fa-solid fa-ranking-star"></i></div>
+
                 <h3>Acteur Majeur</h3>
+
                 <p>NOXIS se veut être une entreprise performante, dans laquelle il fait bon travailler, un des acteurs majeurs des services numériques qui contribue à développer de manière significative l’usage des nouvelles technologies.</p>
+
             </div>
+
+
 
             <div class="interactive-card card-orange">
+
                 <div class="icon-box"><i class="fa-solid fa-map-location-dot"></i></div>
+
                 <h3>Expansion Africaine</h3>
+
                 <p>Fort de notre position solide au <strong>Maroc</strong>, nous aurons amorcé un développement international ambitieux, notamment en <strong>Afrique</strong> pour exporter notre savoir-faire unique.</p>
+
             </div>
+
+
 
             <div class="interactive-card card-yellow">
+
                 <div class="icon-box"><i class="fa-solid fa-hand-holding-heart"></i></div>
+
                 <h3>Création de Valeur</h3>
+
                 <p>Nos produits et services innovants contribueront, en outre, à créer de la valeur durable et mesurable pour toutes les parties prenantes et partenaires stratégiques de l’entreprise.</p>
+
             </div>
+
         </div>
+
     </section>
 
+
+
     <section id="valeurs">
+
         <h2>Nos Valeurs</h2>
-        <p class="section-subtitle">Les principes fondamentaux qui guident nos actions et forgent notre identité au
+
+        <p class="section-subtitle">Les principes fondamentaux qui guident nos actions et forgent notre identité au quotidien.</p>
+
+        
+
+        <div class="values-grid">
+
+            <div class="value-card">
+
+                <div class="value-icon"><i class="fa-solid fa-shield-halved"></i></div>
+
+                <h3>Confiance</h3>
+
+                <p>We make each other trustful and prompt trust with our partners everyday.</p>
+
+            </div>
+
+
+
+            <div class="value-card">
+
+                <div class="value-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
+
+                <h3>Motivation</h3>
+
+                <p>Bâtir ensemble la meilleure entreprise de services numériques et offerir les meilleurs produits.</p>
+
+            </div>
+
+
+
+            <div class="value-card">
+
+                <div class="value-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+
+                <h3>Implication</h3>
+
+                <p>Engagés aux côtés de nos clients pour trouver chaque jour les solutions les plus pertinentes.</p>
+
+            </div>
+
+
+
+            <div class="value-card">
+
+                <div class="value-icon"><i class="fa-solid fa-lightbulb"></i></div>
+
+                <h3>Innovation</h3>
+
+                <p>Nous innovons en continu pour améliorer l'expérience utilisateur globale de nos clients.</p>
+
+            </div>
+
+
+
+            <div class="value-card">
+
+                <div class="value-icon"><i class="fa-solid fa-award"></i></div>
+
+                <h3>Excellence</h3>
+
+                <p>Tout ce que nous entreprenons est guidé par le prisme et l'exigence de l'excellence absolue.</p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <script>
+
+        // --- Carousel Logic ---
+
+        let currentIndex = 0;
+
+        const slides = document.getElementById('sliderTrack');
+
+        const dots = document.querySelectorAll('.dot');
+
+        const totalSlides = 3;
+
+        const autoSlideInterval = 5000;
+
+        let autoSlideTimer;
+
+
+
+        function updateSlider() {
+
+            slides.style.transform = `translateX(-${currentIndex * 33.333}%)`;
+
+            dots.forEach((dot, index) => {
+
+                dot.classList.toggle('active', index === currentIndex);
+
+            });
+
+            resetTimer();
+
+        }
+
+
+
+        function moveSlide(direction) {
+
+            currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
+
+            updateSlider();
+
+        }
+
+
+
+        function setSlide(index) {
+
+            currentIndex = index;
+
+            updateSlider();
+
+        }
+
+
+
+        function resetTimer() {
+
+            clearInterval(autoSlideTimer);
+
+            autoSlideTimer = setInterval(() => moveSlide(1), autoSlideInterval);
+
+        }
+
+
+
+        resetTimer();
+
+
+
+        // --- Active state script for smooth scrolling highlight ---
+
+        const menuLinks = document.querySelectorAll('.nav-link');
+
+        const sections = document.querySelectorAll('section, main');
+
+
+
+        window.addEventListener('scroll', () => {
+
+            let currentSectionId = 'accueil';
+
+            
+
+            sections.forEach(section => {
+
+                const sectionTop = section.offsetTop - 100;
+
+                if (window.scrollY >= sectionTop) {
+
+                    currentSectionId = section.getAttribute('id');
+
+                }
+
+            });
+
+
+
+            menuLinks.forEach(link => {
+
+                link.classList.remove('active');
+
+                if (link.getAttribute('href') === `#${currentSectionId}`) {
+
+                    link.classList.add('active');
+
+                }
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html> 
+
